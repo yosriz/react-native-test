@@ -1,0 +1,42 @@
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.3"
+
+    defaultConfig {
+        minSdkVersion 18
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+repositories {
+    google()
+    mavenCentral()
+    maven{
+        url 'https://jitpack.io'
+    }
+}
+
+dependencies {
+    compile 'com.facebook.react:react-native:+'
+    compile 'com.github.kinecosystem:kin-devplatform-android:0.8.2'
+}
+  
