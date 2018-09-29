@@ -9,11 +9,15 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"   
+    "android"
   ],
   "author": "",
   "license": "",
   "directories": {
     "example": "example"
+  },
+  "devDependencies": {
+    "react": "16.4.1",
+    "react-native": "0.55.4"
   }
 }

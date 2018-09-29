@@ -32,10 +32,12 @@ export class Environment {
 
 export class Kin {
 
-    static start = async (jwt: string, env: Environment) => {
-        return await RNKin.start(jwt, env);
+    static start = async (userID: string, jwt: string, env: Environment) => {
+        return await RNKin.start(userID, jwt, env);
+    }
+
+    static enableLogs(enable : boolean){
+        RNKin.enableLogs(enable);
     }
 
 }
-
-

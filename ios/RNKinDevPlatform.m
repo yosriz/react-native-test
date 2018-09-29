@@ -5,9 +5,9 @@
  */
 
 #import "React/RCTUtils.h"
-#import "RNSecureKeyStore.h"
+#import "RNKinDevPlatform.h"
 
-@implementation RNSecureKeyStore
+@implementation RNKinDevPlatform
 
 - (dispatch_queue_t)methodQueue
 {
@@ -15,7 +15,7 @@
 }
 RCT_EXPORT_MODULE()
 
-static NSString *serviceName = @"RNSecureKeyStoreKeyChain";
+static NSString *serviceName = @"RNKinDevPlatformKeyChain";
 
 - (NSMutableDictionary *)newSearchDictionary:(NSString *)identifier {
     NSMutableDictionary *searchDictionary = [[NSMutableDictionary alloc] init];

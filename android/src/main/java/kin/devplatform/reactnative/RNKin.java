@@ -1,8 +1,3 @@
-/**
- * React Native Secure Key Store
- * Store keys securely in Android Keystore
- * Ref: cordova-plugin-secure-key-store
- */
 
 package kin.devplatform.reactnative;
 
@@ -51,26 +46,11 @@ public class RNKin extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void getPlayground(Callback callback) {
-        Log.d("RNKin", "getPlayground(), Thread = " + Thread.currentThread());
-        WritableMap env = Arguments.createMap();
-        env.putString(BLOCKCHAIN_NETWORK_URL, Environment.getPlayground().getBlockchainNetworkUrl());
-        env.putString(BLOCKCHAIN_PASSPHRASE, Environment.getPlayground().getBlockchainPassphrase());
-        env.putString(ISSUER, Environment.getPlayground().getIssuer());
-        env.putString(ECOSYSTEM_WEB_FRONT, Environment.getPlayground().getEcosystemWebFront());
-        env.putString(ECOSYSTEM_SERVER_URL, Environment.getPlayground().getEcosystemServerUrl());
-        env.putString(BI_URL, Environment.getPlayground().getBiUrl());
-        callback.invoke(env);
-    }
-
-    @ReactMethod
-    public void start(final String jwt, final ReadableMap environment, final Promise promise) {
+    public void start(final String userId, final String jwt, final ReadableMap environment, final Promise promise) {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                Log.d("RNKin", "start() - thread = " + Thread.currentThread());
                 try {
-                    Kin.enableLogs(true);
                     Environment env = new Environment(environment.getString(BLOCKCHAIN_NETWORK_URL),
                             environment.getString(BLOCKCHAIN_PASSPHRASE), environment.getString(ISSUER),
                             environment.getString(ECOSYSTEM_SERVER_URL), environment.getString(ECOSYSTEM_WEB_FRONT),
@@ -85,9 +65,13 @@ public class RNKin extends ReactContextBaseJavaModule {
         });
     }
 
+    @ReactMethod
+    public void enableLogs(boolean enable){
+        Kin.enableLogs(enable);
+    }
+
     @Override
     public Map<String, Object> getConstants() {
-        Log.d("RNKin", "getConstants(), Thread = " + Thread.currentThread());
         final Map<String, Object> constants = new HashMap<>();
         constants.put("ENV_PLAYGROUND_NETWORK_URL", Environment.getPlayground().getBlockchainNetworkUrl());
         constants.put("ENV_PLAYGROUND_BI_URL", Environment.getPlayground().getBiUrl());
